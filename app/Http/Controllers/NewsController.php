@@ -33,7 +33,7 @@ class NewsController extends Controller
     }
     public function show(News $news)
     {
-            return response()->json(new NewsResource($news), 200);
+        return response()->json(new NewsResource($news), 200);
     }
     public function update(Request $request, News $news)
     {

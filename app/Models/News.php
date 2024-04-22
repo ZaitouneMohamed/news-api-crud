@@ -16,24 +16,24 @@ class News extends Model
     {
         return $this->belongsTo(Categorie::class);
     }
-    public function getCategorieNameAttribute(): ?string
-    {
-        // Check if the 'categorie' relationship is loaded and not null
-        if ($this->categorie) {
-            return $this->categorie->name;
-        }
+    // public function getCategorieNameAttribute(): ?string
+    // {
+    //     // Check if the 'categorie' relationship is loaded and not null
+    //     if ($this->categorie) {
+    //         return $this->categorie->name;
+    //     }
 
-        return null; // Return null if the 'categorie' relationship is not loaded or is null
-    }
-    protected $appends = [
-        'categorie_name'
-    ];
-    protected $hidden = [
-        'categorie_id',
-        'categorie',
-        "created_at",
-        "updated_at"
-    ];
+    //     return null; // Return null if the 'categorie' relationship is not loaded or is null
+    // }
+    // protected $appends = [
+    //     'categorie_name'
+    // ];
+    // protected $hidden = [
+    //     'categorie_id',
+    //     'categorie',
+    //     "created_at",
+    //     "updated_at"
+    // ];
 
     protected static function booted(): void
     {

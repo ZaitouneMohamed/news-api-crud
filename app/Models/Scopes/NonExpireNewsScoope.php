@@ -14,6 +14,6 @@ class NonExpireNewsScoope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         $builder->where('date_expiration', '>=', now())
-            ->orderBy('date_start', 'desc');
+            ->orderBy('date_start', 'desc')->with('categorie');
     }
 }
