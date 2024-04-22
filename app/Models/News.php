@@ -16,11 +16,15 @@ class News extends Model
     {
         return $this->belongsTo(Categorie::class);
     }
-    public function getCategorieNameAttribute(): string
+    public function getCategorieNameAttribute(): ?string
     {
-        return $this->categorie->name;
-    }
+        // Check if the 'categorie' relationship is loaded and not null
+        if ($this->categorie) {
+            return $this->categorie->name;
+        }
 
+        return null; // Return null if the 'categorie' relationship is not loaded or is null
+    }
     protected $appends = [
         'categorie_name'
     ];
