@@ -29,12 +29,12 @@ class NewsController extends Controller
         $new = News::create($validatedData);
         return response()->json([
             'message' => "data added with success",
-            'news' => new NewsResource($new)
+            'news' => $new
         ], 201);
     }
     public function show(News $news)
     {
-        return response()->json(new NewsResource($news), 200);
+        return response()->json($news, 200);
     }
     public function update(Request $request, News $news)
     {
@@ -49,7 +49,7 @@ class NewsController extends Controller
         $news->update($validatedData);
         return response()->json([
             'message' => "data update with success",
-            'news' => new NewsResource($news)
+            'news' => $news
         ], 201);
     }
 
