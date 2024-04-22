@@ -33,18 +33,7 @@ class NewsController extends Controller
     }
     public function show(News $news)
     {
-        // try {
-            // return response()->json(new NewsResource($news), 200);
-            return response()->json($news, 200);
-        // } catch (ModelNotFoundException $e) {
-        //     $message = $e->getMessage();
-
-        //     if (str_contains($message, 'No query results')) {
-        //         return response()->json(['error' => 'News not found or has expired'], 404);
-        //     }
-
-        //     return response()->json(['error' => 'News not found'], 404);
-        // }
+            return response()->json(new NewsResource($news), 200);
     }
     public function update(Request $request, News $news)
     {
