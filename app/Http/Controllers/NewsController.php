@@ -13,7 +13,8 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::paginate(15);
-        return NewsColection::collection($news);
+        // return NewsColection::collection($news);
+        return response()->json($news);
     }
     public function store(Request $request)
     {
