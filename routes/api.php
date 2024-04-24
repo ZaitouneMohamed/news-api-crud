@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource("news" , NewsController::class);
 Route::middleware('auth:sanctum')->group(function(){
+    Route::apiResource("news" , NewsController::class);
     Route::get("new/search/{category_name}", [NewsController::class, "searchByCategory"]);
 });
 
