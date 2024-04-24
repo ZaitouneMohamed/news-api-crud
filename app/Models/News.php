@@ -16,27 +16,23 @@ class News extends Model
     {
         return $this->belongsTo(Categorie::class);
     }
-    // public function getCategorieNameAttribute(): ?string
-    // {
-    //     // Check if the 'categorie' relationship is loaded and not null
-    //     if ($this->categorie) {
-    //         return $this->categorie->name;
-    //     }
-
-    //     return null; // Return null if the 'categorie' relationship is not loaded or is null
-    // }
-    // protected $appends = [
-    //     'categorie_name'
-    // ];
-    // protected $hidden = [
-    //     'categorie_id',
-    //     'categorie',
-    //     "created_at",
-    //     "updated_at"
-    // ];
-
-    protected static function booted(): void
+    public function getCategorieNameAttribute(): string
     {
-        static::addGlobalScope(new NonExpireNewsScoope);
+        return $this->categorie->name;
+    }
+    protected $appends = [
+        'categorie_name'
+    ];
+    protected $hidden = [
+        'categorie_id',
+        'categorie',
+        "created_at",
+        "updated_at"
+    ];
+
+    static public function GetData()
+    {
+        return self::where('date_expiration', '>=', now())
+            ->orderBy('date_start', 'desc')->with('categorie')->paginate(10);
     }
 }

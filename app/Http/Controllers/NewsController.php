@@ -12,8 +12,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::paginate(15);
-        // return NewsColection::collection($news);
+        $news = News::GetData();
         return response()->json($news);
     }
     public function store(Request $request)
@@ -34,6 +33,12 @@ class NewsController extends Controller
     }
     public function show(News $news)
     {
+        if ($news->date_expiration <= now()) {
+            return response()->json([
+                "message" => "this news is expired",
+                "status" => 404
+            ]);
+        }
         return response()->json($news, 200);
     }
     public function update(Request $request, News $news)
