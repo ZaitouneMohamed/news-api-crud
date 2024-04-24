@@ -22,7 +22,7 @@ class NewsController extends Controller
             'content' => 'required|string',
             'categorie_id' => 'required|exists:categories,id',
             'date_start' => 'required|date',
-            'date_expiration' => 'required|date|after_or_equal:date_start',
+            'date_expiration' => 'required|date|after:date_start|after:today',
         ]);
 
         $new = News::create($validatedData);
