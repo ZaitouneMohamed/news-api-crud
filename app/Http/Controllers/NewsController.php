@@ -63,7 +63,7 @@ class NewsController extends Controller
         $news->delete();
         return response()->json([
             'message' => "the selected new delete with success",
-        ], 201);
+        ], 204);
     }
 
     public function searchByCategory($category_name)
